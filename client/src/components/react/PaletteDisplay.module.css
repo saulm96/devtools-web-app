@@ -1,0 +1,27 @@
+.paletteDisplay{
+    margin: 2rem auto;
+
+    max-width: 80%;
+    height: 10vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.paletteDisplay div{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    border-radius: 1em;
+}
