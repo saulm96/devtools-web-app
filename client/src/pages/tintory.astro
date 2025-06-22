@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import PaletteTool from '../components/react/PaletteTool'
+
+
+---
+
+<Layout
+    title="Tintory"
+    description="Generate color palettes and instantly check them for WCAG contrast compliance."
+>
+	<PaletteTool client:load />
+</Layout>

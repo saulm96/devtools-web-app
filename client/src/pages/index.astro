@@ -1,11 +1,285 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-import PaletteTool from '../components/react/PaletteTool'
 
-
+const featuredTools = [
+  {
+    title: 'Tintory',
+    description: 'Generate color palettes and instantly check them for WCAG contrast compliance.',
+    href: '/tintory',
+    icon: '🎨',
+  },
+  {
+    title: 'URL Shortener',
+    description: 'Create clean, short links for easier sharing and tracking.',
+    href: '/url-shortener',
+    icon: '🔗',
+  },
+  {
+    title: 'Basic SEO Checker',
+    description: 'Analyze on-page SEO factors for any website in seconds.',
+    href: '/seo-checker',
+    icon: '🔍',
+  },
+];
 ---
 
-<Layout>
-	<PaletteTool client:load />
+<Layout 
+    title="DevKit: The Modern Developer's Toolkit" 
+    description="A free collection of essential tools for web developers. Color palette generator, contrast checker, URL shortener, SEO analyzer, and more.">
+
+	<main>
+		<section class="hero">
+			<div class="hero-content">
+				<h1 class="hero-title">Essential Tools for Modern Developers</h1>
+				<p class="hero-subtitle">
+					Speed up your workflow with our collection of fast and free utilities.
+					Here are some of our most popular tools.
+				</p>
+				<div class="hero-cta">
+					<a href="/tools" class="cta-button primary">See All Tools</a>
+					<a href="#community" class="cta-button secondary">Missing a tool?</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="tools" class="tools-section">
+			<h2 class="section-title">Popular Tools</h2>
+			<div class="tools-grid">
+				{featuredTools.map(tool => (
+					<a href={tool.href} class="tool-card">
+						<div class="tool-icon-placeholder">{tool.icon}</div>
+						<h3 class="tool-title">{tool.title}</h3>
+						<p class="tool-description">{tool.description}</p>
+					</a>
+				))}
+
+				<a href="/tools" class:list={["tool-card", "all-tools-card"]}>
+					<div class="all-tools-content">
+						<h3 class="tool-title">Explore the Full Collection</h3>
+						<p class="tool-description">Browse all available utilities on our main tools page.</p>
+						<span class="all-tools-arrow">&rarr;</span>
+					</div>
+				</a>
+			</div>
+		</section>
+
+		
+		<section class="value-prop-section">
+			<h2 class="section-title">Why You'll Love It</h2>
+			<div class="value-prop-grid">
+				<div class="value-item">
+                    <div class="value-icon">🚀</div>
+					<h3>Fast and Efficient</h3>
+					<p>No fluff, no distractions. Get the job done quickly with clean, intuitive interfaces.</p>
+				</div>
+				<div class="value-item">
+                    <div class="value-icon">💯</div>
+					<h3>Completely Free</h3>
+					<p>All tools are 100% free to use. No sign-ups, no hidden fees, no nonsense.</p>
+				</div>
+				<div class="value-item">
+					<div class="value-icon">🤝</div>
+					<h3>Community Driven</h3>
+					<p>Built for developers, by developers. We listen to your feedback to decide what to build next.</p>
+				</div>
+			</div>
+		</section>
+		
+		<section id="community" class="community-section">
+			<div class="community-content">
+				<h2 class="section-title">Help Us Build the Future</h2>
+				<p>Is there a tool you wish existed? Let us know! We're building this platform for the community.</p>
+				<a href="#" rel="noopener noreferrer" class="cta-button primary">Suggest a New Tool</a>
+			</div>
+		</section>
+
+	</main>
+
+	<footer class="site-footer">
+		<p>&copy; {new Date().getFullYear()} Samo webtools kit. All rights reserved.</p>
+		<p>Built with ❤️ and Astro</p>
+	</footer>
 </Layout>
+
+<style>
+	:root {
+		scroll-behavior: smooth;
+	}
+
+	main {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 2rem;
+	}
+
+	section {
+		padding: 4rem 0;
+	}
+
+	.section-title {
+		font-size: 2.5rem;
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+
+	.hero {
+		text-align: center;
+		padding: 4rem 0;
+	}
+	
+	.hero-content {
+		max-width: 750px;
+		margin: 0 auto;
+	}
+
+	.hero-title {
+		font-size: 3.5rem;
+		font-weight: 800;
+		margin-bottom: 1rem;
+		line-height: 1.2;
+	}
+
+	.hero-subtitle {
+		font-size: 1.25rem;
+		color: #4b5563;
+		margin-bottom: 2rem;
+	}
+
+	.hero-cta {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	.cta-button {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		border-radius: 0.5rem;
+		text-decoration: none;
+		font-weight: 600;
+		transition: transform 0.2s ease, background-color 0.2s ease;
+		visibility: visible;
+	}
+	.cta-button:hover {
+		transform: translateY(-2px);
+	}
+
+
+	.cta-button.primary {
+		background-color: #2563eb; 
+		color: #ffffff; 
+	}
+
+	.cta-button.secondary {
+		background-color: transparent;
+		color: #2563eb; 
+		border: 1px solid #2563eb; 
+	}
+
+
+	.tools-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.tool-card {
+		background-color: #f9fafb;
+		padding: 2rem;
+		border-radius: 0.75rem;
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid #e5e7eb;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		display: flex;
+		flex-direction: column;
+	}
+	.tool-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	}
+
+    .tool-icon-placeholder {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+	.tool-title {
+		font-size: 1.25rem;
+		margin-top: 0;
+		margin-bottom: 0.5rem;
+	}
+
+	.tool-description {
+		color: #4b5563;
+		margin: 0;
+	}
+	
+	.all-tools-card {
+		background-color: transparent;
+		border: 2px dashed #d1d5db;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+	}
+	.all-tools-card:hover {
+		border-color: #2563eb;
+		color: #2563eb;
+		transform: none;
+        box-shadow: none;
+	}
+	.all-tools-arrow {
+		font-size: 2rem;
+		margin-top: 1rem;
+		transition: transform 0.2s ease;
+	}
+	.all-tools-card:hover .all-tools-arrow {
+		transform: translateX(10px);
+	}
+
+	.value-prop-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		text-align: center;
+	}
+    
+    .value-icon {
+        font-size: 3rem;
+    }
+
+	.value-item h3 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.value-item p {
+		color: #4b5563;
+	}
+	
+	.community-section {
+		background-color: #f3f4f6;
+		border-radius: 1rem;
+		text-align: center;
+		padding: 4rem 2rem;
+		scroll-margin-top: 2rem;
+	}
+	.community-section .section-title {
+		margin-bottom: 1rem;
+	}
+	.community-content p {
+		max-width: 600px;
+		margin: 0 auto 2rem auto;
+		font-size: 1.125rem;
+		color: #4b5563;
+	}
+
+	.site-footer {
+		text-align: center;
+		padding: 2rem;
+		margin-top: 4rem;
+		border-top: 1px solid #e5e7eb;
+		color: #6b7280;
+	}
+</style>

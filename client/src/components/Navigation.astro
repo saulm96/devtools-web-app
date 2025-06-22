@@ -1,0 +1,63 @@
+---
+const {pathname} = Astro.url;
+
+const navLinks = [
+{href: '/', label: 'Home'},
+{href: '/tintory', label: 'Tools'},
+{href: '/about', label: 'About Me'}
+]
+---
+<>
+    <div class="nav-title-container">
+        <p class="nav-title">Samo DevTools</p>
+    </div>
+    <nav>
+    {navLinks.map(link => (
+        <a
+            href={link.href}
+            class:list={[
+                'nav-link',
+                { active: link.href === pathname }
+            ]}
+        >
+            {link.label}
+        </a>
+    ))}
+    </nav>
+</>
+
+<style>
+  nav {
+    display: flex;
+    gap: 1rem;
+  }
+  .nav-title-container {
+      width: 100%;      
+      height: 5vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .nav-title{
+      font-size: 2rem;
+      font-weight: bold;
+  }
+  nav{
+      width: 100%;      
+      height: 3vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+      margin-bottom: 2rem;
+  }
+  .nav-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .nav-link.active {
+    text-decoration: underline;
+  }
+</style>
+
+
