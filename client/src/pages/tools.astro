@@ -1,0 +1,36 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import ToolCard from '../components/ToolCard.astro'; // <-- 1. Importa el componente
+
+const allTools = await getCollection('tools');
+---
+<Layout title="All Tools - DevKit" description="...">
+    <section class="tools-section">
+        <div class="tools-grid">
+            {allTools.map((tool) => (
+                <ToolCard
+                    href={tool.data.href}
+                    icon={tool.data.icon}
+                    title={tool.data.title}
+                    description={tool.data.description}
+                />
+            ))}
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .tools-section {
+        padding: 4rem 2rem;
+    }
+
+	.tools-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto; 
+	}
+
+</style>
