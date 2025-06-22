@@ -2,6 +2,6 @@
 title: 'Tintory'
 description: 'Generate accessible color palettes and check contrast ratios.'
 icon: '🎨'
-href: '/tintory'
+href: '/tools/tintory'
 isFeatured: true
 ---
