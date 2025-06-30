@@ -17,6 +17,8 @@ import bcrypt from "bcrypt";
   timestamps: true,
   paranoid: true,
 })
+
+
 export class User extends Model {
   //id
   @PrimaryKey
