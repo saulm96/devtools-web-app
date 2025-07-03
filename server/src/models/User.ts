@@ -59,14 +59,16 @@ export class User extends Model {
   @Column({ allowNull: false })
   public password!: string;
 
-  //HOOKS
-  @BeforeSave
-  static async hashPassword(user: User) {
-    if (user.changed("password")) {
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(user.password, salt);
+//HOOKS
+static async hashPassword(user: User) {
+  if (user.changed("password")) {
+    if (!user.password) {
+      throw new Error("Password is required");
     }
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
   }
+}
 
   public async validatePassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);

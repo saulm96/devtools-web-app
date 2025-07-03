@@ -7,7 +7,6 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
-  Length,
   BeforeSave,
 } from "sequelize-typescript";
 import { User } from "./User";
