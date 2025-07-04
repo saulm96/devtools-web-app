@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
+
 import { User } from "../models/User";
+import { ColorPalette } from "../models/ColorPalette";
 
 dotenv.config();
 
@@ -12,5 +14,5 @@ export const sequelize = new Sequelize({
     password: process.env.DB_PASSWORD, 
     database: process.env.DB_DATABASE, 
     logging: false,
-    models: [User]  //Add more models in the future
+    models: [User, ColorPalette]
 });
