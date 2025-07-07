@@ -28,6 +28,7 @@ export const getUserById = async (req: Request, res: Response) => {
     }
 };
 
+
 export const createUser = async (req: Request, res: Response) => {
     try {
         const { email, username, firstName, lastName, password } = req.body;

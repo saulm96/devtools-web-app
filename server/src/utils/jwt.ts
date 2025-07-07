@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 
 import { jwtConfig } from "../config/jwt.config";
 
+
+
 export const generateAccesToken = (payload: object) => {
   const tokenPayload = {
     ...payload,
@@ -9,6 +11,7 @@ export const generateAccesToken = (payload: object) => {
   };
   return jwt.sign(tokenPayload, jwtConfig.accesTokenSecret);
 };
+
 
 export const generateRefreshToken = (payload: object) => {
   const tokenPayload = {
@@ -20,4 +23,4 @@ export const generateRefreshToken = (payload: object) => {
 
 export const verifyAccesToken = (token: string) => jwt.verify(token, jwtConfig.accesTokenSecret);
 
-export const verifyRefreshToken = (token: string) => jwt.verify(token, jwtConfig.refreshTokenSecret); 
+export const verifyRefreshToken = (token: string) => jwt.verify(token, jwtConfig.refreshTokenSecret);

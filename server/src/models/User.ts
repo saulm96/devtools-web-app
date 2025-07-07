@@ -20,6 +20,10 @@ export interface CreateUserData {
   password: string;
 }
 
+export interface AuthenticateUserData{
+  identifier: string; //email or username
+  password: string;
+}
 @Table({
   tableName: "users",
   timestamps: true,
@@ -96,6 +100,38 @@ export class User extends Model {
     } catch (error) {
       throw error;
     }
+  }
+
+  public static async findByEmailOrUsername(identifier: string): Promise<User | null> {
+    return await User.findOne({
+      where: {
+        [Op.or]: [
+          { email: identifier.toLowerCase() },
+          { username: identifier.toLowerCase() }
+        ]
+      }
+    });
+  }
+
+  public static async authenticateUser(userData: AuthenticateUserData): Promise<User> {
+    const { identifier, password } = userData;
+
+    if (!identifier || !password) {
+      throw new Error("Email/username and password are required");
+    }
+
+    const user = await User.findByEmailOrUsername(identifier);
+    
+    if (!user) {
+      throw new Error("Invalid credentials");
+    }
+
+    const isValidPassword = await user.validatePassword(password);
+    if (!isValidPassword) {
+      throw new Error("Invalid credentials");
+    }
+
+    return user;
   }
 
   // HOOKS
